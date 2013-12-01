@@ -1,3 +1,6 @@
+<?php
+include "mantenedor.php";
+?>
 <!DOCTYPE html>
 <html>
 
