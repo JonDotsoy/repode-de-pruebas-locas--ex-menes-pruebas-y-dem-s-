@@ -47,29 +47,22 @@
 
         </div>
 
-            <?php 
-            session_start(); 
-            include_once "conexion.php"; 
-                         
-            ?> 
-
 
             <form action="" method="post" class="registro" > 
-            <div><label>Usuario:</label> 
-            <input type="text" name="usuario"></div> 
-            <div><label>Clave:</label> 
-            <input type="password" name="password"></div> 
-            <div><label>Repetir Clave:</label> 
-            <input type="password" name="repassword"></div> 
-            <div> 
-            <input type="submit" name="enviar" value="Registrar"></div> 
-
+                <div><label>Usuario:</label> 
+                <input type="text" name="usuario"></div> 
+                <div><label>Clave:</label> 
+                <input type="password" name="password"></div> 
+                <div><label>Repetir Clave:</label> 
+                <input type="password" name="repassword"></div> 
+                <div> 
+                <input type="submit" name="enviar" value="Registrar"></div> 
             </form> 
              
             
-            <?php 
+            <?php
 
-
+            include_once "mantenedor.php"; 
 
             if(isset($_POST['enviar'])) 
             { 
@@ -78,40 +71,26 @@
                     echo 'Por favor llene todos los campos.'; 
                 } 
                 else 
-                { 
-                    $sql = 'SELECT * FROM usuarios'; 
-                    $rec = mysql_query($sql); 
-                    $verificar_usuario = 0; 
-              
-                    while($result = mysql_fetch_object($rec)) 
+                {
+                    if($_POST['password'] == $_POST['repassword']) 
                     { 
-                        if($result->usuario == $_POST['usuario']) 
-                        { 
-                            $verificar_usuario = 1; 
-                        } 
-                    } 
-              
-                    if($verificar_usuario == 0) 
-                    { 
-                        if($_POST['password'] == $_POST['repassword']) 
-                        { 
-                            $usuario = $_POST['usuario']; 
-                            $password = $_POST['password']; 
-                            $sql = "INSERT INTO usuarios (usuario,password) VALUES ('$usuario','$password')"; 
-                            mysql_query($sql); 
-              
-                            echo 'Usted se ha registrado correctamente.'; 
-                        } 
-                        else 
-                        { 
-                            echo 'Las claves no son iguales, intente nuevamente.'; 
+                        $usuario = $_POST['usuario']; 
+                        $password = $_POST['password']; 
+                        // $sql = "INSERT INTO usuarios (usuario,password) VALUES ('$usuario','$password')"; 
+                        // mysql_query($sql); 
 
-                        } 
+                        if (creausuario($usuario,$password)){
+                            echo 'Usted se ha registrado correctamente.'; 
+                        } else {
+                            echo "Puede que el usuario ya exista, Intentelo nuevamente";
+                        }
+          
                     } 
                     else 
                     { 
-                        echo 'Este usuario ya ha sido registrado anteriormente.'; 
-                    } 
+                        echo 'Las claves no son iguales, intente nuevamente.'; 
+
+                    }
                 } 
             } 
             ?> 

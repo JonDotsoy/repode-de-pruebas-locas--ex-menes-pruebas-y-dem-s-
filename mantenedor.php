@@ -17,15 +17,21 @@ function creausuario($userin, $passin)
 	global $host,$user,$pass,$db;
 	$ret = true;
 
-	$conect = mysql_connect($host,$user,$pass,$db);
+	$conect = mysql_connect($host,$user,$pass);
+	mysql_select_db($db,$conect);
 
 	if (mysqli_connect_errno())
 	  {
 	  	$ret = false;
-	 	echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	 	# die ("Failed to connect to MySQL: " . mysqli_connect_error() . "<br>");
 	  }
+		#echo "insert into usuarios (usuario,password) values ('$userin','$passin')<br>";
 
-	mysql_query($conect,"insert into usuarios (usuario,password) values ('$userin','$passin');");
+	 	// si existe un error como que ya exista el usuario inmediatamente adbierte
+	if (!mysql_query("insert into usuarios (usuario,password) values ('$userin','$passin');",$conect)){
+	  	$ret = false;
+	    # die('Error: ' . mysqli_error($con)."<br>");
+	}
 
 	mysql_close($conect);
 
