@@ -50,6 +50,8 @@ include "mantenedor.php";
                     <a href="registrar.php">Registrar</a>
                     <a href="carrito.php">Admin</a>
 
+                <!--Modulo de unlogin, Permite mostrar el usuario si se esta logeado  -->
+                <?php include "moduleunlogin.php"; ?>
                 </span>
                 <div class="clr"></div>
             </div>

@@ -28,6 +28,8 @@
                 <span class="right">
                     <a href="login.php">Ingresar</a>
                     <a href="registrar.php">Registrar</a>
+                <!--Modulo de unlogin, Permite mostrar el usuario si se esta logeado  -->
+                <?php include "moduleunlogin.php"; ?>
                 </span>
                 <div class="clr"></div>
             </div>
