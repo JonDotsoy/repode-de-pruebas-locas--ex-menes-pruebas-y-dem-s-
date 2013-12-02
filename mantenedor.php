@@ -77,3 +77,33 @@ function login($userin,$passin)
 
 	return $ret;
 }
+
+/**
+ * Busca los articulos para ael carro de compra
+ *
+ * @return array
+ **/
+function buscaarticulos()
+{
+
+
+	global $host,$user,$pass,$db;
+	$ret = array();
+
+	$conect = mysql_connect($host,$user,$pass);
+	mysql_select_db($db,$conect);
+
+	$registro=mysql_query("SELECT * FROM  productos", $conect ) or die ("Houston tenemos un problema:" .mysql_error());
+
+	// captura los registros y los almacena en la respuesta
+	while ($reg=mysql_fetch_array($registro)) {
+		
+		$ret[] = $reg;
+
+	}
+
+
+	mysql_close($conect);
+
+	return $ret;
+}

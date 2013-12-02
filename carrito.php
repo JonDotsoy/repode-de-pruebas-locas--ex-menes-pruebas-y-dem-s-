@@ -63,58 +63,28 @@
                             Precio Unit.
                         </td>
                     </tr>
-                    <tr>
-                        <td >
-                            
                          <?php 
-                                include("select.php");
-                                
+                        
+                                include "mantenedor.php";
+                                $result = buscaarticulos();
 
+                                # print_r($result);
 
+                                foreach ($result as $key => $value) {
+                                    echo "
+                    <tr>
+                        <td >
+                            ".$value["nombre"]."
+                        </td>
+                        <td>
+                            ".$value["cantidad"]."
+                        </td>
+                        <td>
+                            ".$value["precio"]."
+                        </td>
+                    </tr>";
+                                }
                           ?>
-
-                            
-                        </td>
-                        <td>
-                            Row 1
-                        </td>
-                        <td>
-                            Row 1
-                        </td>
-                    </tr>
-                    <tr>
-                        <td >
-                            Row 2
-                        </td>
-                        <td>
-                            Row 2
-                        </td>
-                        <td>
-                            Row 2
-                        </td>
-                    </tr>
-                    <tr>
-                        <td >
-                            Row 2
-                        </td>
-                        <td>
-                            Row 2
-                        </td>
-                        <td>
-                            Row 2
-                        </td>
-                    </tr>
-                    <tr>
-                        <td >
-                            Row 3
-                        </td>
-                        <td>
-                            Row 3
-                        </td>
-                        <td>
-                            Row 3
-                        </td>
-                    </tr>
                 </table>
             </div>
 
