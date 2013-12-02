@@ -1,5 +1,2 @@
-<<<<<<< HEAD
---linea tt
+linea Edicion A
 =======
-
->>>>>>> fbb3926556704fbe3c49b58543701d8615b06d87
